@@ -55,7 +55,19 @@ namespace SwinAdventure
 
         public string ItemList
         {
-            get { return ""; }
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (Item i in _items)
+                {
+                    sb.Append("\t");
+                    sb.Append(i.ShortDescription);
+                    sb.Append(Environment.NewLine);
+                }
+
+                return sb.ToString();
+            }
         }
 
     }

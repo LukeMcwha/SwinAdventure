@@ -6,25 +6,21 @@ using System.Threading.Tasks;
 
 namespace SwinAdventure
 {
-    public class Player : GameObject, IHaveInventory
+    public class Bag : Item, IHaveInventory
     {
         private Inventory _inventory;
 
-        public Player(string name, string desc) : base(new string[] { "me", "inventory" }, name, desc)
+        public Bag(string[] ids, string name, string desc) : base(ids, name, desc)
         {
             _inventory = new Inventory();
         }
 
         public GameObject Locate(string id)
         {
-            if (AreYou(id.ToLower()))
-            {
+            if (AreYou(id))
                 return this;
-            }
             else
-            {
-                return _inventory.Fetch(id.ToLower());
-            }
+                return _inventory.Fetch(id);
         }
 
         public override string LongDescription
@@ -32,11 +28,13 @@ namespace SwinAdventure
             get
             {
                 StringBuilder sb = new StringBuilder();
-                sb.Append(base.LongDescription);
-                sb.Append(Environment.NewLine);
-                sb.Append("You are carrying:");
+
+                sb.Append("In the ");
+                sb.Append(Name);
+                sb.Append(" you can see:");
                 sb.Append(Environment.NewLine);
                 sb.Append(_inventory.ItemList);
+
                 return sb.ToString();
             }
         }
@@ -45,6 +43,5 @@ namespace SwinAdventure
         {
             get { return _inventory; }
         }
-            
     }
 }
