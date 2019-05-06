@@ -20,11 +20,12 @@ namespace SwinAdventure
                 text[i] = text[i].ToLower();
 
             // Check if length of text is 3 or 5 
-            if (text.Length != 3 && text.Length != 5)
+            if (text.Length != 1 && text.Length != 3 && text.Length != 5)
                 return "I don't know how to look like that";
             // Check if first word is "look"
-            if (text[0] != "look")
-                return "Error in look input";
+            if (text[0] == "look")
+                return p.Location.LongDescription;
+            
             // Check if second work is "at"
             if (text[1] != "at")
                 return "What do you want to look at?";

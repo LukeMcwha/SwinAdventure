@@ -9,6 +9,7 @@ namespace SwinAdventure
     public class Player : GameObject, IHaveInventory
     {
         private Inventory _inventory;
+        private Location _location;
 
         public Player(string name, string desc) : base(new string[] { "me", "inventory" }, name, desc)
         {
@@ -17,13 +18,17 @@ namespace SwinAdventure
 
         public GameObject Locate(string id)
         {
-            if (AreYou(id.ToLower()))
+            if (AreYou(id))
             {
                 return this;
             }
+            else if (_inventory.HasItem(id))
+            {
+                return _inventory.Fetch(id);
+            }
             else
             {
-                return _inventory.Fetch(id.ToLower());
+                return _location.Locate(id);
             }
         }
 
@@ -44,6 +49,10 @@ namespace SwinAdventure
         public Inventory Inventory
         {
             get { return _inventory; }
+        }
+        public Location Location
+        {
+            get { return _location; }
         }
             
     }
