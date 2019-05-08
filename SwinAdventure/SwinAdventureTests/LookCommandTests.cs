@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SwinAdventure;
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SwinAdventure.Tests
@@ -48,6 +49,7 @@ namespace SwinAdventure.Tests
         {
             Assert.AreEqual("A grand bronze sword from years ago", lookCommand.Execute(p, new string[] { "look", "at", "sword", "in", "bag" }));
         }
+
         [TestMethod]
         public void LookAtSwordInNoBagTest()
         {
@@ -62,9 +64,9 @@ namespace SwinAdventure.Tests
         [TestMethod]
         public void InvalidLookTest()
         {
-            Assert.AreEqual("Error in look input", lookCommand.Execute(p, new string[] { "Jeft", "at", "sword" }));
+            Assert.AreEqual("I don't know how to look like that", lookCommand.Execute(p, new string[] { "Jeft", "at", "sword" }));
             Assert.AreEqual("I don't know how to look like that", lookCommand.Execute(p, new string[] { "Look", "at", "sword", "in" }));
-            Assert.AreEqual("What do you want to look at?", lookCommand.Execute(p, new string[] { "Look", "in", "sword"}));
+            Assert.AreEqual("What do you want to look at?", lookCommand.Execute(p, new string[] { "Look", "in", "sword" }));
             Assert.AreEqual("What do you want to look in?", lookCommand.Execute(p, new string[] { "Look", "at", "sword", "at", "bag" }));
         }
     }

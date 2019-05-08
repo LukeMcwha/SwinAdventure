@@ -14,22 +14,24 @@ namespace SwinAdventure
         public Player(string name, string desc) : base(new string[] { "me", "inventory" }, name, desc)
         {
             _inventory = new Inventory();
+            _location = null;
         }
 
         public GameObject Locate(string id)
         {
             if (AreYou(id))
-            {
                 return this;
-            }
             else if (_inventory.HasItem(id))
-            {
                 return _inventory.Fetch(id);
-            }
             else
-            {
-                return _location.Locate(id);
-            }
+                if (_location != null)
+                    return _location.Locate(id);
+            return null;
+        }
+
+        public void MoveLocation(Location l)
+        {
+            _location = l;
         }
 
         public override string LongDescription

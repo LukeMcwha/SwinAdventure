@@ -11,7 +11,9 @@ namespace SwinAdventure
         private Inventory _inventory;
 
         public Location(string[] ids, string name, string desc) : base(ids, name, desc)
-        {}
+        {
+            _inventory = new Inventory();
+        }
 
         public GameObject Locate(string id)
         {

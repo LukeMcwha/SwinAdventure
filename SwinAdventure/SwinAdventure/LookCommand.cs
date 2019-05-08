@@ -20,12 +20,12 @@ namespace SwinAdventure
                 text[i] = text[i].ToLower();
 
             // Check if length of text is 3 or 5 
-            if (text.Length != 1 && text.Length != 3 && text.Length != 5)
+            if ((text.Length != 1 && text.Length != 3 && text.Length != 5) || text[0] != "look")
                 return "I don't know how to look like that";
-            // Check if first word is "look"
-            if (text[0] == "look")
-                return p.Location.LongDescription;
-            
+            // Check if first word is "look" and if length of command is 1
+            if (text.Length == 1)
+                return p.Location.LongDescription; // print the locations description
+
             // Check if second work is "at"
             if (text[1] != "at")
                 return "What do you want to look at?";
@@ -47,6 +47,7 @@ namespace SwinAdventure
                     return String.Format("I cannot find the {0}", text[4]);
                 return LookAtIn(text[2], invent);
             }
+
         }
 
         private IHaveInventory FetchContainer(Player p, string containerID)
