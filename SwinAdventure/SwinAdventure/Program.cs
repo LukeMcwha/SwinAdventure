@@ -36,7 +36,7 @@ namespace SwinAdventure
             location.Inventory.Put(gem);
 
             // Create commands
-            LookCommand lcmd = new LookCommand(new string[] { "look" });
+            CommandProcessor cp = new CommandProcessor();
 
 
             string cmd = "";
@@ -44,7 +44,7 @@ namespace SwinAdventure
             {
                 Console.Write("Command -> ");
                 cmd = Console.ReadLine();
-                Console.WriteLine(lcmd.Execute(player, cmd.Split(' ')));
+                Console.WriteLine(cp.Execute(player, cmd.Split(' ')));
             }
         }
     }

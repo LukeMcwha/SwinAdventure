@@ -8,16 +8,14 @@ namespace SwinAdventure
 {
     public class LookCommand : Command
     {
-        public LookCommand(string[] ids) : base(ids)
+        public LookCommand() : base(new string[] { "look" })
         {
 
         }
 
         public override string Execute(Player p, string[] text)
         {
-            // Sanitise data to all lowercase
-            for (int i = 0; i < text.Length; i++)
-                text[i] = text[i].ToLower();
+            
 
             // Check if length of text is 3 or 5 
             if ((text.Length != 1 && text.Length != 3 && text.Length != 5) || text[0] != "look")
