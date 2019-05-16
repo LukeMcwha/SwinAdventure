@@ -14,5 +14,10 @@ namespace SwinAdventure
         {
             get;
         }
+
+        Inventory Inventory
+        {
+            get;
+        }
     }
 }

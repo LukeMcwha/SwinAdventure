@@ -35,6 +35,22 @@ namespace SwinAdventure
             return null;
         }
 
+        public override string LongDescription
+        {
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append(base.LongDescription);
+                sb.Append(Environment.NewLine);
+                sb.Append("In the room you can see:");
+                sb.Append(Environment.NewLine);
+                sb.Append(_inventory.ItemList);
+
+                return sb.ToString();
+            }
+        }
+
         public Inventory Inventory
         {
             get { return _inventory; }
